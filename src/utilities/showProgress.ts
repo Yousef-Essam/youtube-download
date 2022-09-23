@@ -1,4 +1,3 @@
-import { totalmem } from "os";
 import internal from "stream";
 
 const showProgress = (stream: internal.Readable) => {
