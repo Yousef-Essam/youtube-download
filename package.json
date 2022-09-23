@@ -1,0 +1,32 @@
+{
+  "name": "yt-download-audio-playlist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "ytDownloadAudio": "npm run build && node build/ytDownloadAudio",
+    "ytDownloadAudioPlaylist": "npm run build && node build/ytDownloadAudioPlaylist",
+    "ytDownloadVideo": "npm run build && node build/ytDownloadVideo",
+    "ytDownloadVideoPlaylist": "npm run build && node build/ytDownloadVideoPlaylist"
+  },
+  "bin": {
+    "ytDownload": "build/index.js",
+    "ytDownloadAudio": "build/ytDownloadAudio.js",
+    "ytDownloadAudioPlaylist": "build/ytDownloadAudioPlaylist.js",
+    "ytDownloadVideo": "build/ytDownloadVideo.js",
+    "ytDownloadVideoPlaylist": "build/ytDownloadVideoPlaylist.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.8.3",
+    "ytdl-core": "^4.11.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "dotenv": "^16.0.2",
+    "ts-node": "^10.9.1"
+  }
+}
