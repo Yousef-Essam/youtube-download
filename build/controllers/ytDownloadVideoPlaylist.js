@@ -1,4 +1,3 @@
-#! /usr/bin/env node
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -40,55 +39,43 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var prompt_1 = __importDefault(require("./utilities/prompt"));
-var ytDownloadAudio_1 = __importDefault(require("./controllers/ytDownloadAudio"));
-var ytDownloadAudioPlaylist_1 = __importDefault(require("./controllers/ytDownloadAudioPlaylist"));
-var ytDownloadVideo_1 = __importDefault(require("./controllers/ytDownloadVideo"));
-var ytDownloadVideoPlaylist_1 = __importDefault(require("./controllers/ytDownloadVideoPlaylist"));
-(function () {
-    return __awaiter(this, void 0, void 0, function () {
-        var exit, input, _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    exit = false;
-                    _b.label = 1;
-                case 1:
-                    if (!!exit) return [3 /*break*/, 13];
-                    exit = true;
-                    return [4 /*yield*/, (0, prompt_1.default)("Choose the mode of download:\n1.Audio\n2.Audio Playlist\n3.Video\n4.Video Playlist\n\nChoice: ")];
-                case 2:
-                    input = _b.sent();
-                    _a = input;
-                    switch (_a) {
-                        case '1': return [3 /*break*/, 3];
-                        case '2': return [3 /*break*/, 5];
-                        case '3': return [3 /*break*/, 7];
-                        case '4': return [3 /*break*/, 9];
-                    }
-                    return [3 /*break*/, 11];
-                case 3: return [4 /*yield*/, (0, ytDownloadAudio_1.default)()];
-                case 4:
-                    _b.sent();
-                    return [3 /*break*/, 12];
-                case 5: return [4 /*yield*/, (0, ytDownloadAudioPlaylist_1.default)()];
-                case 6:
-                    _b.sent();
-                    return [3 /*break*/, 12];
-                case 7: return [4 /*yield*/, (0, ytDownloadVideo_1.default)()];
-                case 8:
-                    _b.sent();
-                    return [3 /*break*/, 12];
-                case 9: return [4 /*yield*/, (0, ytDownloadVideoPlaylist_1.default)()];
-                case 10:
-                    _b.sent();
-                    return [3 /*break*/, 12];
-                case 11:
-                    exit = false;
-                    _b.label = 12;
-                case 12: return [3 /*break*/, 1];
-                case 13: return [2 /*return*/];
-            }
-        });
+var prompt_1 = __importDefault(require("../utilities/prompt"));
+var streamVideo_1 = __importDefault(require("../utilities/streamVideo"));
+var getPlaylistVideosIds_1 = __importDefault(require("../utilities/getPlaylistVideosIds"));
+var promises_1 = __importDefault(require("fs/promises"));
+var fs_1 = __importDefault(require("fs"));
+var ytDownloadVideoPlaylist = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var path, playlistId, ids, i, filePath, fileStream;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, (0, prompt_1.default)('Enter the path of the folder to download the files: ')];
+            case 1:
+                path = _a.sent();
+                return [4 /*yield*/, (0, prompt_1.default)('Enter the id of the playlist to download: ')];
+            case 2:
+                playlistId = _a.sent();
+                return [4 /*yield*/, (0, getPlaylistVideosIds_1.default)(playlistId)];
+            case 3:
+                ids = _a.sent();
+                console.log("Starting Download of ".concat(ids.length, " videos."));
+                i = 0;
+                _a.label = 4;
+            case 4:
+                if (!(i < ids.length)) return [3 /*break*/, 8];
+                filePath = "".concat(path, "/").concat(i + 1, ".mp4");
+                return [4 /*yield*/, promises_1.default.writeFile(filePath, '')];
+            case 5:
+                _a.sent();
+                fileStream = fs_1.default.createWriteStream(filePath);
+                return [4 /*yield*/, (0, streamVideo_1.default)(ids[i], fileStream)];
+            case 6:
+                _a.sent();
+                _a.label = 7;
+            case 7:
+                i++;
+                return [3 /*break*/, 4];
+            case 8: return [2 /*return*/];
+        }
     });
-})();
+}); };
+exports.default = ytDownloadVideoPlaylist;

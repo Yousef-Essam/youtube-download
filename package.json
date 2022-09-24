@@ -5,17 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "ytDownloadAudio": "npm run build && node build/ytDownloadAudio",
-    "ytDownloadAudioPlaylist": "npm run build && node build/ytDownloadAudioPlaylist",
-    "ytDownloadVideo": "npm run build && node build/ytDownloadVideo",
-    "ytDownloadVideoPlaylist": "npm run build && node build/ytDownloadVideoPlaylist"
+    "start": "npm run build && node build/."
   },
   "bin": {
-    "ytDownload": "build/index.js",
-    "ytDownloadAudio": "build/ytDownloadAudio.js",
-    "ytDownloadAudioPlaylist": "build/ytDownloadAudioPlaylist.js",
-    "ytDownloadVideo": "build/ytDownloadVideo.js",
-    "ytDownloadVideoPlaylist": "build/ytDownloadVideoPlaylist.js"
+    "ytDownload": "build/index.js"
   },
   "keywords": [],
   "author": "",
