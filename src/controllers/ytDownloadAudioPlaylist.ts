@@ -3,10 +3,22 @@ import streamAudio from "../utilities/streamAudio";
 import getPlaylistVideosIds from "../utilities/getPlaylistVideosIds";
 import fsPromises from 'fs/promises';
 import fs from 'fs';
+import pathExists from "../utilities/pathExists";
+import playlistExists from "../utilities/playlistExists";
 
 const ytDownloadAudioPlaylist = async () => {
-    const path = await prompt('Enter the path of the folder to download the files: ');
-    const playlistId = await prompt('Enter the id of the playlist to download: ');
+    let path, playlistId;
+    while (true) {
+        path = await prompt('Enter the path of the folder to download the file: ');
+        if (await pathExists(path)) break;
+        console.log('This path does not exist.')
+    }
+
+    while (true) {
+        playlistId = await prompt('Enter the id of the playlist to download: ');
+        if (await playlistExists(playlistId)) break;
+        console.log('This playlist does not exist.')
+    }
 
     const ids = await getPlaylistVideosIds(playlistId)
     console.log(`Starting Download of ${ids.length} audio files.`)

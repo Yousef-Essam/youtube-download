@@ -44,37 +44,55 @@ var streamAudio_1 = __importDefault(require("../utilities/streamAudio"));
 var getPlaylistVideosIds_1 = __importDefault(require("../utilities/getPlaylistVideosIds"));
 var promises_1 = __importDefault(require("fs/promises"));
 var fs_1 = __importDefault(require("fs"));
+var pathExists_1 = __importDefault(require("../utilities/pathExists"));
+var playlistExists_1 = __importDefault(require("../utilities/playlistExists"));
 var ytDownloadAudioPlaylist = function () { return __awaiter(void 0, void 0, void 0, function () {
     var path, playlistId, ids, i, filePath, fileStream;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, prompt_1.default)('Enter the path of the folder to download the files: ')];
+            case 0:
+                if (!true) return [3 /*break*/, 3];
+                return [4 /*yield*/, (0, prompt_1.default)('Enter the path of the folder to download the file: ')];
             case 1:
                 path = _a.sent();
-                return [4 /*yield*/, (0, prompt_1.default)('Enter the id of the playlist to download: ')];
+                return [4 /*yield*/, (0, pathExists_1.default)(path)];
             case 2:
-                playlistId = _a.sent();
-                return [4 /*yield*/, (0, getPlaylistVideosIds_1.default)(playlistId)];
+                if (_a.sent())
+                    return [3 /*break*/, 3];
+                console.log('This path does not exist.');
+                return [3 /*break*/, 0];
             case 3:
+                if (!true) return [3 /*break*/, 6];
+                return [4 /*yield*/, (0, prompt_1.default)('Enter the id of the playlist to download: ')];
+            case 4:
+                playlistId = _a.sent();
+                return [4 /*yield*/, (0, playlistExists_1.default)(playlistId)];
+            case 5:
+                if (_a.sent())
+                    return [3 /*break*/, 6];
+                console.log('This playlist does not exist.');
+                return [3 /*break*/, 3];
+            case 6: return [4 /*yield*/, (0, getPlaylistVideosIds_1.default)(playlistId)];
+            case 7:
                 ids = _a.sent();
                 console.log("Starting Download of ".concat(ids.length, " audio files."));
                 i = 0;
-                _a.label = 4;
-            case 4:
-                if (!(i < ids.length)) return [3 /*break*/, 8];
+                _a.label = 8;
+            case 8:
+                if (!(i < ids.length)) return [3 /*break*/, 12];
                 filePath = "".concat(path, "/").concat(i + 1, ".mp3");
                 return [4 /*yield*/, promises_1.default.writeFile(filePath, '')];
-            case 5:
+            case 9:
                 _a.sent();
                 fileStream = fs_1.default.createWriteStream(filePath);
                 return [4 /*yield*/, (0, streamAudio_1.default)(ids[i], fileStream)];
-            case 6:
+            case 10:
                 _a.sent();
-                _a.label = 7;
-            case 7:
+                _a.label = 11;
+            case 11:
                 i++;
-                return [3 /*break*/, 4];
-            case 8: return [2 /*return*/];
+                return [3 /*break*/, 8];
+            case 12: return [2 /*return*/];
         }
     });
 }); };

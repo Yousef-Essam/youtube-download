@@ -35,55 +35,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var prompt_1 = __importDefault(require("../utilities/prompt"));
-var streamAudio_1 = __importDefault(require("../utilities/streamAudio"));
-var promises_1 = __importDefault(require("fs/promises"));
-var fs_1 = __importDefault(require("fs"));
-var pathExists_1 = __importDefault(require("../utilities/pathExists"));
-var videoExists_1 = __importDefault(require("../utilities/videoExists"));
-var ytDownloadAudio = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var path, videoId, filename, filePath, fileStream;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+var Client_1 = require("../controllers/Client");
+var playlistExists = function (id) { return __awaiter(void 0, void 0, void 0, function () {
+    var res, _a, _b;
+    return __generator(this, function (_c) {
+        switch (_c.label) {
             case 0:
-                if (!true) return [3 /*break*/, 3];
-                return [4 /*yield*/, (0, prompt_1.default)('Enter the path of the folder to download the file: ')];
+                if (!id)
+                    return [2 /*return*/, false];
+                _b = (_a = JSON).parse;
+                return [4 /*yield*/, (0, Client_1.get)({
+                        host: 'www.googleapis.com',
+                        path: '/youtube/v3/playlistItems',
+                        qs: {
+                            key: process.env.YOUTUBE_API_KEY,
+                            part: 'id',
+                            playlistId: id,
+                            maxResults: 1
+                        }
+                    })];
             case 1:
-                path = _a.sent();
-                return [4 /*yield*/, (0, pathExists_1.default)(path)];
-            case 2:
-                if (_a.sent())
-                    return [3 /*break*/, 3];
-                console.log('This path does not exist.');
-                return [3 /*break*/, 0];
-            case 3:
-                if (!true) return [3 /*break*/, 6];
-                return [4 /*yield*/, (0, prompt_1.default)('Enter the id of the video to download: ')];
-            case 4:
-                videoId = _a.sent();
-                return [4 /*yield*/, (0, videoExists_1.default)(videoId)];
-            case 5:
-                if (_a.sent())
-                    return [3 /*break*/, 6];
-                console.log('This video does not exist.');
-                return [3 /*break*/, 3];
-            case 6: return [4 /*yield*/, (0, prompt_1.default)('Enter the name to give to the audio file: ')];
-            case 7:
-                filename = _a.sent();
-                filePath = "".concat(path, "/").concat(filename, ".mp3");
-                return [4 /*yield*/, promises_1.default.writeFile(filePath, '')];
-            case 8:
-                _a.sent();
-                fileStream = fs_1.default.createWriteStream(filePath);
-                return [4 /*yield*/, (0, streamAudio_1.default)(videoId, fileStream)];
-            case 9:
-                _a.sent();
-                return [2 /*return*/];
+                res = _b.apply(_a, [_c.sent()]);
+                return [2 /*return*/, 'pageInfo' in res];
         }
     });
 }); };
-exports.default = ytDownloadAudio;
+exports.default = playlistExists;
