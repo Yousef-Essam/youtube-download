@@ -19,7 +19,7 @@ const ytDownloadVideo = async () => {
         console.log('This video does not exist.')
     }
     
-    const filename = await prompt('Enter the name to give to the audio file: ');
+    const filename = await prompt('Enter the name to give to the video file: ');
 
     const filePath = `${path}/${filename}.mp4`
     await fsPromises.writeFile(filePath, '')

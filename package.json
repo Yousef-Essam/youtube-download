@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "npm run build && node build/."
+    "start": "node build/.",
+    "push": "git add . && git commit -m \"Pushing Changes\" && git push origin main"
   },
   "bin": {
     "ytDownload": "build/index.js"

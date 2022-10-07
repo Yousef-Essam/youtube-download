@@ -5,7 +5,7 @@ import showProgress from './showProgress';
 const streamVideo = (videoId: string, res: Writable) => {
     return new Promise((resolve: Function, reject: Function) => {
         try {
-            const videoStream = ytdl(`http://youtube.com/watch?v=${videoId}`)
+            const videoStream = ytdl(`http://youtube.com/watch?v=${videoId}`, {quality: 'highest'})
             showProgress(videoStream)
             videoStream.on('data', (data) => {
                 res.write(data)
