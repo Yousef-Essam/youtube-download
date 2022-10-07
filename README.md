@@ -17,5 +17,5 @@
 ## Using ytDownload
 - Inside the command line check that the tool is successfully installed by running the following command: `ytDownload`
 - The tool will prompt you to choose whether to download an audio file, a video file or an entire audio or video playlist.
-- You will be prompted to enter the path in which the file/playlist will be downloaded and the id of the video/playlist to download.
+- You will be prompted to enter the path in which the file/playlist will be downloaded in your filesystem and the id of the video/playlist to download.
 - Congratulations! You downloaded your first youtube file!
