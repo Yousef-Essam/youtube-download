@@ -5,13 +5,13 @@
 ## Setting up the tool
 - You must first get a Youtube API Key.
 - You should add this key to your system either by:
-- - Creating a `.env` file and adding the API key to it under the name `YOUTUBE_API_KEY`. You should add the `.env` file to the home directory of your device. For example: if you are working with Windows, the path to the `.env` file must be `C:/.env`.
-- - Adding the API key as a global environment variable called `YOUTUBE_API_KEY`.
+    - Creating a `.env` file and adding the API key to it under the name `YOUTUBE_API_KEY`. You should add the `.env` file to the home directory of your device. For example: if you are working with Windows, the path to the `.env` file must be `C:/.env`.
+    - Adding the API key as a global environment variable called `YOUTUBE_API_KEY`.
 - Clone the repository using the following command `git clone https://github.com/Yousef-Essam/youtube-download`.
 - Inside the application folder:
-- - Install the dependencies using the following command `npm install`
-- - Build the application using the following command `npm run build`
-- - Install the application using the following command `npm install . -g`
+    - Install the dependencies using the following command `npm install`
+    - Build the application using the following command `npm run build`
+    - Install the application using the following command `npm install . -g`
 - Now, you are ready to use this tool!
 
 ## Using ytDownload
