@@ -19,3 +19,6 @@
 - The tool will prompt you to choose whether to download an audio file, a video file or an entire audio or video playlist.
 - You will be prompted to enter the path in which the file/playlist will be downloaded in your filesystem and the id of the video/playlist to download.
 - Congratulations! You downloaded your first youtube file!
+
+## In future versions:
+- You will be able to choose the quality of the video to download.
