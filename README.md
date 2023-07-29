@@ -9,9 +9,7 @@
     - Adding the API key as a global environment variable called `YOUTUBE_API_KEY`.
 - Clone the repository using the following command `git clone https://github.com/Yousef-Essam/youtube-download`.
 - Inside the application folder:
-    - Install the dependencies using the following command `npm install`
-    - Build the application using the following command `npm run build`
-    - Install the application using the following command `npm install . -g`
+    - Install the tool using `npm run inst`
 - Now, you are ready to use this tool!
 
 ## Using ytDownload
