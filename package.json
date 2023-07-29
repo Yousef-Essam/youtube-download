@@ -1,9 +1,10 @@
 {
-  "name": "yt-download-audio-playlist",
+  "name": "yt-download",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "inst": "npm install && npm run build && npm install . -g",
     "build": "npx tsc",
     "start": "node build/.",
     "push": "git add . && git commit -m \"Pushing Changes\" && git push origin main"
